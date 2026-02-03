@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* Define the custom dark variant if using Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    /* Base Colors for Light Mode */
+    --color-primary: 225, 29, 72;
+    --bg-body: 248, 250, 252; /* slate-50 */
+    --text-body: 15, 23, 42;  /* slate-900 */
+  }
+
+  .dark {
+    /* Colors for Dark Mode */
+    --bg-body: 0, 0, 0;      /* slate-950 */
+    --text-body: 241, 245, 249; /* slate-100 */
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    /* Apply variables using rgb for opacity support if needed */
+    background-color: rgb(var(--bg-body));
+    color: rgb(var(--text-body));
+    @apply transition-colors duration-500 ease-in-out;
+  }
+}
+
+@keyframes slow-zoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+.animate-slow-zoom {
+  animation: slow-zoom 20s ease-in-out infinite alternate;
+}
